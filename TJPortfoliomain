@@ -1,0 +1,253 @@
+index.html
+styles.css
+script.js
+projects.json
+README.md   (optional)
+assets/     (folder for images + PDFs)
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Name — Class Projects</title>
+    <meta name="description" content="A simple site to share my class projects." />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="wrap header-inner">
+        <div>
+          <h1>Your Name</h1>
+          <p class="muted">Class projects • case studies • simple portfolio</p>
+        </div>
+        <nav class="nav">
+          <a href="#projects">Projects</a>
+          <a href="#about">About</a>
+          <a class="btn" href="mailto:you@email.com">Email</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="hero">
+        <h2>Projects from my MBA coursework</h2>
+        <p class="muted">
+          Here are a few projects I’ve completed in class. Each one includes a short summary and links to files.
+        </p>
+      </section>
+
+      <section id="projects">
+        <div class="section-head">
+          <h3>Projects</h3>
+          <input id="search" class="search" type="search" placeholder="Search projects (e.g., operations, marketing)..." />
+        </div>
+
+        <div id="projectsGrid" class="grid" aria-live="polite"></div>
+
+        <p class="muted small">
+          To add a project: edit <code>projects.json</code> and (optionally) add PDFs/images to <code>/assets</code>.
+        </p>
+      </section>
+
+      <section id="about" class="about">
+        <h3>About</h3>
+        <p class="muted">
+          I’m an MBA student interested in operations, program management, and experience design. This site is a simple
+          place to share my coursework and case studies.
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer wrap">
+      <span class="muted small">© <span id="year"></span> Your Name</span>
+      <span class="muted small">•</span>
+      <a class="muted small" href="https://github.com/YOURUSERNAME" target="_blank" rel="noreferrer">GitHub</a>
+      <span class="muted small">•</span>
+      <a class="muted small" href="https://www.linkedin.com/in/YOURLINKEDIN" target="_blank" rel="noreferrer">LinkedIn</a>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+:root{
+  --bg:#0b0f19;
+  --card:rgba(255,255,255,.06);
+  --border:rgba(255,255,255,.12);
+  --text:rgba(255,255,255,.92);
+  --muted:rgba(255,255,255,.72);
+  --radius:16px;
+  --shadow:0 12px 30px rgba(0,0,0,.35);
+  --max:980px;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(900px 600px at 20% 10%, rgba(124,92,255,.20), transparent 60%),
+              radial-gradient(900px 600px at 90% 20%, rgba(0,208,255,.12), transparent 55%),
+              var(--bg);
+  color:var(--text);
+}
+a{color:inherit}
+code{background:rgba(255,255,255,.06); padding:2px 6px; border-radius:8px; border:1px solid var(--border);}
+
+.wrap{max-width:var(--max); margin:0 auto; padding:0 16px;}
+.header{
+  position: sticky; top: 0;
+  backdrop-filter: blur(10px);
+  background: rgba(11,15,25,.75);
+  border-bottom: 1px solid var(--border);
+  z-index: 10;
+}
+.header-inner{display:flex; justify-content:space-between; gap:16px; align-items:center; padding:14px 0;}
+h1{margin:0; font-size:18px; letter-spacing:-0.02em;}
+.muted{color:var(--muted);}
+.small{font-size:13px;}
+
+.nav{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+.nav a{padding:8px 10px; text-decoration:none; border-radius:12px;}
+.nav a:hover{background:rgba(255,255,255,.06);}
+.btn{border:1px solid var(--border); background:rgba(255,255,255,.04); box-shadow:var(--shadow);}
+
+.hero{padding:24px 0 8px;}
+.hero h2{margin:0 0 8px; font-size:28px; letter-spacing:-0.03em;}
+.hero p{margin:0; line-height:1.6;}
+
+.section-head{display:flex; justify-content:space-between; gap:12px; align-items:center; margin:18px 0 10px;}
+.section-head h3{margin:0; font-size:18px;}
+.search{
+  width:min(360px, 100%);
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.04);
+  color:var(--text);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap:12px;
+}
+@media (max-width:720px){ .grid{grid-template-columns: 1fr;} }
+
+.card{
+  border:1px solid var(--border);
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:14px;
+  box-shadow:var(--shadow);
+}
+.card h4{margin:0 0 8px; font-size:16px;}
+.meta{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 0;}
+.tag{
+  font-size:12px;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  color:var(--muted);
+  background:rgba(255,255,255,.04);
+}
+.links{display:flex; gap:12px; flex-wrap:wrap; margin-top:12px;}
+.links a{border-bottom:1px dashed rgba(255,255,255,.35); text-decoration:none;}
+.links a:hover{border-bottom-color: rgba(255,255,255,.75);}
+
+.about{padding:26px 0 40px;}
+.footer{display:flex; gap:10px; align-items:center; flex-wrap:wrap; padding:18px 0 30px;}
+[
+  {
+    "title": "Operations Improvement: Check-in Flow",
+    "course": "Operations Management",
+    "date": "Fall 2025",
+    "summary": "Mapped bottlenecks in the check-in process and proposed changes to reduce wait time and improve guest satisfaction.",
+    "tags": ["operations", "process", "cx"],
+    "links": [
+      { "label": "PDF Report", "url": "assets/checkin-flow-report.pdf" },
+      { "label": "Slides", "url": "assets/checkin-flow-slides.pdf" }
+    ]
+  },
+  {
+    "title": "Market Analysis: Hospitality Segment Strategy",
+    "course": "Marketing Strategy",
+    "date": "Spring 2025",
+    "summary": "Compared segment positioning and created a go-to-market recommendation with clear assumptions.",
+    "tags": ["marketing", "strategy"],
+    "links": [
+      { "label": "One-pager", "url": "assets/market-analysis-onepager.pdf" }
+    ]
+  }
+]
+const yearEl = document.getElementById("year");
+yearEl.textContent = new Date().getFullYear();
+
+const grid = document.getElementById("projectsGrid");
+const searchEl = document.getElementById("search");
+
+let projects = [];
+
+function safeText(s) {
+  return String(s ?? "");
+}
+
+function render(list) {
+  grid.innerHTML = "";
+
+  if (!list.length) {
+    grid.innerHTML = `<div class="card"><h4>No projects found</h4><p class="muted">Try a different search.</p></div>`;
+    return;
+  }
+
+  for (const p of list) {
+    const title = safeText(p.title);
+    const course = safeText(p.course);
+    const date = safeText(p.date);
+    const summary = safeText(p.summary);
+
+    const tags = Array.isArray(p.tags) ? p.tags : [];
+    const links = Array.isArray(p.links) ? p.links : [];
+
+    const tagHtml = tags.map(t => `<span class="tag">${safeText(t)}</span>`).join("");
+    const linksHtml = links
+      .map(l => `<a href="${safeText(l.url)}" target="_blank" rel="noreferrer">${safeText(l.label)}</a>`)
+      .join("");
+
+    const el = document.createElement("article");
+    el.className = "card";
+    el.innerHTML = `
+      <h4>${title}</h4>
+      <p class="muted small">${course}${course && date ? " • " : ""}${date}</p>
+      <p class="muted">${summary}</p>
+      <div class="meta">${tagHtml}</div>
+      <div class="links">${linksHtml}</div>
+    `;
+    grid.appendChild(el);
+  }
+}
+
+async function init() {
+  try {
+    const res = await fetch("projects.json", { cache: "no-store" });
+    projects = await res.json();
+    render(projects);
+  } catch (e) {
+    grid.innerHTML = `<div class="card"><h4>Couldn’t load projects.json</h4><p class="muted small">Make sure it exists and is valid JSON.</p></div>`;
+  }
+}
+
+searchEl.addEventListener("input", () => {
+  const q = searchEl.value.trim().toLowerCase();
+  if (!q) return render(projects);
+
+  const filtered = projects.filter(p => {
+    const hay = [
+      p.title, p.course, p.date, p.summary,
+      ...(Array.isArray(p.tags) ? p.tags : [])
+    ].join(" ").toLowerCase();
+    return hay.includes(q);
+  });
+
+  render(filtered);
+});
+
+init();
